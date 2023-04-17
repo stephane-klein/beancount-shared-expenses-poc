@@ -1,3 +1,4 @@
+
 option "operating_currency" "EUR"
 
 * Accounts
@@ -15,9 +16,69 @@ option "operating_currency" "EUR"
 2021-01-01 open Income:Salary:Bob
 2021-01-01 open Income:Salary:Alice
 
+* 2022-12
+
+2021-12-30 * "Salaire Bob" "Mois décembre 2021"
+    Assets:Bank:Bob                 2000.0 EUR
+    Income:Salary:Bob
+
+2021-12-30 * "Salaire Alice" "Mois décembre 2021"
+    Assets:Bank:Alice               3000.0 EUR
+    Income:Salary:Alice
+
+; Ratio de contribution :
+;
+; ratio_bob = 2000.0 / 5000.0 = 0.4
+; ratio_alice = 3000.0 / 5000.0 = 0.6
+
 * 2022-01
 
 2022-01-04 * "Courses" "Auchan"
-    Expenses:Commun:Courses                      120.69 EUR
-    Assets:Bank:Commun:Bob                       -48.27 EUR  ; 120.69 * 0.4
-    Assets:Bank:Commun:Alice                     -72.42 EUR  ; 120.69 - 48.27
+    courses: "auchan"
+    Expenses:Commun:Courses         120.69 EUR
+    Assets:Bank:Commun:Bob          -48.27 EUR  ; 120.69 * 0.4
+    Assets:Bank:Commun:Alice        -72.42 EUR  ; 120.69 - 48.27
+
+2022-01-05 * "Courses" "Biocoop"
+    courses: "biocoop"
+    Expenses:Commun:Courses           23.2 EUR
+    Assets:Bank:Commun:Bob           -9.28 EUR  ; 23.2 * 0.4
+    Assets:Bank:Commun:Alice        -13.92 EUR  ; 23.2 - 9.28
+
+2022-01-05 * "Courses" "Picard"
+    courses: "picard"
+    Expenses:Commun:Courses          56.65 EUR
+    Assets:Bank:Commun:Bob          -22.66 EUR  ; 56.65 * 0.4
+    Assets:Bank:Commun:Alice        -33.99 EUR  ; 56.65 - 22.66
+
+2022-01-09 * "Restaurant" "Crêperie Le Ptit Josslin"
+    restaurant: "creperie"
+    Expenses:Commun:Restaurant        29.0 EUR
+    Assets:Bank:Commun:Bob           -11.6 EUR  ; 29.0 * 0.4
+    Assets:Bank:Commun:Alice         -17.4 EUR  ; 29.0 - 11.6
+
+2022-01-11 * "Courses" "Inter Marché"
+    courses: "intermarche"
+    Expenses:Commun:Courses          86.15 EUR
+    Assets:Bank:Commun:Bob          -34.46 EUR  ; 86.15 * 0.4
+    Assets:Bank:Commun:Alice        -51.69 EUR  ; 86.15 - 34.46
+
+2022-01-14 * "Courses" "Inter Marché"
+    courses: "intermarche"
+    Expenses:Commun:Courses           8.13 EUR
+    Assets:Bank:Commun:Bob           -3.25 EUR  ; 8.13 * 0.4
+    Assets:Bank:Commun:Alice         -4.88 EUR  ; 8.13 - 3.25
+
+2022-01-18 * "Courses" "Auchan"
+    courses: "auchan"
+    Expenses:Commun:Courses          73.87 EUR
+    Assets:Bank:Commun:Bob          -29.54 EUR  ; 73.87 * 0.4
+    Assets:Bank:Commun:Alice        -44.33 EUR  ; 73.87 - 29.54
+
+2022-01-18 * "Courses" "Auchan"
+    courses: "auchan"
+    Expenses:Commun:Courses          31.48 EUR
+    Assets:Bank:Commun:Bob          -12.59 EUR  ; 31.48 * 0.4
+    Assets:Bank:Commun:Alice        -18.89 EUR  ; 31.48 - 12.59
+
+; cutting-off…

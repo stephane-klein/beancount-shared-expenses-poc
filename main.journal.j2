@@ -1,0 +1,79 @@
+{% macro shared_expense(account, amount) %}
+    {% set bob_amount = round(amount * ratio_bob, 0, 'floor') -%}
+    {{ account }}                      {{ amount }} EUR
+    Assets:Bank:Commun:Bob                       -{{ round(bob_amount / 100, 2)}} EUR  ; {{ amount }} * {{ ratio_bob / 100 }}
+    Assets:Bank:Commun:Alice                     -{{ round(((amount * 100) - bob_amount) / 100, 2)}} EUR  ; {{ amount }} - {{ round(bob_amount / 100, 2, 'ceil') }}
+
+{%- endmacro %}
+option "operating_currency" "EUR"
+
+* Accounts
+
+2021-01-01 open Expenses:Commun:Courses
+2021-01-01 open Expenses:Commun:Pharmacie
+2021-01-01 open Expenses:Commun:Restaurant
+2021-01-01 open Expenses:Commun:Loisir
+
+2021-01-01 open Assets:Bank:Bob
+2021-01-01 open Assets:Bank:Alice
+2021-01-01 open Assets:Bank:Commun:Bob
+2021-01-01 open Assets:Bank:Commun:Alice
+
+2021-01-01 open Income:Salary:Bob
+2021-01-01 open Income:Salary:Alice
+
+* 2022-12
+
+{%- set bob_salary = 2000.00 -%}
+{%- set alice_salary = 3000.00 %}
+
+2021-12-30 * "Salaire Bob" "Mois décembre 2021"
+    Assets:Bank:Bob                           {{ bob_salary }} EUR
+    Income:Salary:Bob
+
+2021-12-30 * "Salaire Alice" "Mois décembre 2021"
+    Assets:Bank:Alice                         {{ alice_salary }} EUR
+    Income:Salary:Alice
+
+; Ratio de contribution :
+;
+{%- set ratio_bob = int((bob_salary / (bob_salary + alice_salary)) * 100) -%}
+{%- set ratio_alice = int((alice_salary / (bob_salary + alice_salary)) * 100) %}
+; ratio_bob = {{ bob_salary }} / {{ bob_salary + alice_salary }} = {{ ratio_bob / 100 }}
+; ratio_alice = {{ alice_salary }} / {{ bob_salary + alice_salary }} = {{ ratio_alice / 100 }}
+
+* 2022-01
+
+2022-01-04 * "Courses" "Auchan"
+    courses: "auchan"
+{{- shared_expense('Expenses:Commun:Courses', 120.69) }}
+
+2022-01-05 * "Courses" "Biocoop"
+    courses: "biocoop"
+{{- shared_expense('Expenses:Commun:Courses', 23.20) }}
+
+2022-01-05 * "Courses" "Picard"
+    courses: "picard"
+{{- shared_expense('Expenses:Commun:Courses', 56.65) }}
+
+2022-01-09 * "Restaurant" "Crêperie Le Ptit Josslin"
+    restaurant: "creperie"
+{{- shared_expense('Expenses:Commun:Restaurant', 29.00) }}
+
+2022-01-11 * "Courses" "Inter Marché"
+    courses: "intermarche"
+{{- shared_expense('Expenses:Commun:Courses', 86.15) }}
+
+2022-01-14 * "Courses" "Inter Marché"
+    courses: "intermarche"
+{{- shared_expense('Expenses:Commun:Courses', 8.13) }}
+
+2022-01-18 * "Courses" "Auchan"
+    courses: "auchan"
+{{- shared_expense('Expenses:Commun:Courses', 73.87) }}
+
+2022-01-18 * "Courses" "Auchan"
+    courses: "auchan"
+{{- shared_expense('Expenses:Commun:Courses', 31.48) }}
+
+; cutting-off…
