@@ -44,6 +44,16 @@ option "operating_currency" "EUR"
 
 * 2022-01
 
+2022-01-02 * "Recharge" "Compte commun Bob"
+    recharge: "bob"
+    Assets:Bank:Commun:Bob                           200.00 EUR
+    Assets:Bank:Bob
+
+2022-01-02 * "Recharge" "Compte commun Alice"
+    recharge: "alice"
+    Assets:Bank:Commun:Alice                           300.00 EUR
+    Assets:Bank:Alice
+
 2022-01-04 * "Courses" "Auchan"
     courses: "auchan"
 {{- shared_expense('Expenses:Commun:Courses', 120.69) }}
@@ -77,3 +87,59 @@ option "operating_currency" "EUR"
 {{- shared_expense('Expenses:Commun:Courses', 31.48) }}
 
 ; cutting-off…
+
+* 2023-02
+
+{%- set bob_salary = 2500.00 -%}
+{%- set alice_salary = 2800.00 %}
+
+2021-12-30 * "Salaire Bob" "Mois février 2023"
+    Assets:Bank:Bob                           {{ bob_salary }} EUR
+    Income:Salary:Bob
+
+2021-12-30 * "Salaire Alice" "Mois février 2023"
+    Assets:Bank:Alice                         {{ alice_salary }} EUR
+    Income:Salary:Alice
+
+; Ratio de contribution :
+;
+{%- set ratio_bob = int((bob_salary / (bob_salary + alice_salary)) * 100) -%}
+{%- set ratio_alice = int((alice_salary / (bob_salary + alice_salary)) * 100) %}
+; ratio_bob = {{ bob_salary }} / {{ bob_salary + alice_salary }} = {{ ratio_bob / 100 }}
+; ratio_alice = {{ alice_salary }} / {{ bob_salary + alice_salary }} = {{ ratio_alice / 100 }}
+
+* 2023-03
+
+2023-03-22 * "Recharge" "Compte commun Bob"
+    recharge: "bob"
+    Assets:Bank:Commun:Bob                           200.00 EUR
+    Assets:Bank:Bob
+
+2023-03-22 * "Recharge" "Compte commun Alice"
+    recharge: "alice"
+    Assets:Bank:Commun:Alice                           300.00 EUR
+    Assets:Bank:Alice
+
+2023-03-25 * "Restaurant" "crêperie, Le Flibustier"
+    restaurant: "creperie"
+{{- shared_expense('Expenses:Commun:Restaurant', 31.48,) }}
+
+2023-03-25 * "Musée de l'armée" ""
+    loisir: "musee"
+{{- shared_expense('Expenses:Commun:Loisir', 56.00) }}
+
+2023-03-26 * "Billet Reduc, théatre" ""
+    loisir: "theatre"
+{{- shared_expense('Expenses:Commun:Loisir', 91.50) }}
+
+2023-03-26 * "Courses" "Supermarché G20"
+    courses: "g20"
+{{- shared_expense('Expenses:Commun:Courses', 16.05) }}
+
+2023-03-27 * "Courses" "Supermarché G20"
+    courses: "g20"
+{{- shared_expense('Expenses:Commun:Courses', 13.37) }}
+
+2023-03-28 * "Courses" "Biocoop Montrouge"
+    courses: "biocoop"
+{{- shared_expense('Expenses:Commun:Courses', 30.92) }}

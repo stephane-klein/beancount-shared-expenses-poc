@@ -33,6 +33,16 @@ option "operating_currency" "EUR"
 
 * 2022-01
 
+2022-01-02 * "Recharge" "Compte commun Bob"
+    recharge: "bob"
+    Assets:Bank:Commun:Bob          200.00 EUR
+    Assets:Bank:Bob
+
+2022-01-02 * "Recharge" "Compte commun Alice"
+    recharge: "alice"
+    Assets:Bank:Commun:Alice        300.00 EUR
+    Assets:Bank:Alice
+
 2022-01-04 * "Courses" "Auchan"
     courses: "auchan"
     Expenses:Commun:Courses         120.69 EUR
@@ -82,3 +92,66 @@ option "operating_currency" "EUR"
     Assets:Bank:Commun:Alice        -18.89 EUR  ; 31.48 - 12.59
 
 ; cutting-off…
+
+* 2023-02
+
+2021-12-30 * "Salaire Bob" "Mois février 2023"
+    Assets:Bank:Bob                 2500.0 EUR
+    Income:Salary:Bob
+
+2021-12-30 * "Salaire Alice" "Mois février 2023"
+    Assets:Bank:Alice               2800.0 EUR
+    Income:Salary:Alice
+
+; Ratio de contribution :
+;
+; ratio_bob = 2500.0 / 5300.0 = 0.47
+; ratio_alice = 2800.0 / 5300.0 = 0.52
+
+* 2023-03
+
+2023-03-22 * "Recharge" "Compte commun Bob"
+    recharge: "bob"
+    Assets:Bank:Commun:Bob          200.00 EUR
+    Assets:Bank:Bob
+
+2023-03-22 * "Recharge" "Compte commun Alice"
+    recharge: "alice"
+    Assets:Bank:Commun:Alice        300.00 EUR
+    Assets:Bank:Alice
+
+2023-03-25 * "Restaurant" "crêperie, Le Flibustier"
+    restaurant: "creperie"
+    Expenses:Commun:Restaurant       31.48 EUR
+    Assets:Bank:Commun:Bob          -14.79 EUR  ; 31.48 * 0.47
+    Assets:Bank:Commun:Alice        -16.69 EUR  ; 31.48 - 14.79
+
+2023-03-25 * "Musée de l'armée" ""
+    loisir: "musee"
+    Expenses:Commun:Loisir            56.0 EUR
+    Assets:Bank:Commun:Bob          -26.32 EUR  ; 56.0 * 0.47
+    Assets:Bank:Commun:Alice        -29.68 EUR  ; 56.0 - 26.32
+
+2023-03-26 * "Billet Reduc, théatre" ""
+    loisir: "theatre"
+    Expenses:Commun:Loisir            91.5 EUR
+    Assets:Bank:Commun:Bob           -43.0 EUR  ; 91.5 * 0.47
+    Assets:Bank:Commun:Alice         -48.5 EUR  ; 91.5 - 43.0
+
+2023-03-26 * "Courses" "Supermarché G20"
+    courses: "g20"
+    Expenses:Commun:Courses          16.05 EUR
+    Assets:Bank:Commun:Bob           -7.54 EUR  ; 16.05 * 0.47
+    Assets:Bank:Commun:Alice         -8.51 EUR  ; 16.05 - 7.54
+
+2023-03-27 * "Courses" "Supermarché G20"
+    courses: "g20"
+    Expenses:Commun:Courses          13.37 EUR
+    Assets:Bank:Commun:Bob           -6.28 EUR  ; 13.37 * 0.47
+    Assets:Bank:Commun:Alice         -7.09 EUR  ; 13.37 - 6.28
+
+2023-03-28 * "Courses" "Biocoop Montrouge"
+    courses: "biocoop"
+    Expenses:Commun:Courses          30.92 EUR
+    Assets:Bank:Commun:Bob          -14.53 EUR  ; 30.92 * 0.47
+    Assets:Bank:Commun:Alice        -16.39 EUR  ; 30.92 - 14.53
