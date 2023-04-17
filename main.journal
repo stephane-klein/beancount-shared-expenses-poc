@@ -1,0 +1,23 @@
+option "operating_currency" "EUR"
+
+* Accounts
+
+2021-01-01 open Expenses:Commun:Courses
+2021-01-01 open Expenses:Commun:Pharmacie
+2021-01-01 open Expenses:Commun:Restaurant
+2021-01-01 open Expenses:Commun:Loisir
+
+2021-01-01 open Assets:Bank:Bob
+2021-01-01 open Assets:Bank:Alice
+2021-01-01 open Assets:Bank:Commun:Bob
+2021-01-01 open Assets:Bank:Commun:Alice
+
+2021-01-01 open Income:Salary:Bob
+2021-01-01 open Income:Salary:Alice
+
+* 2022-01
+
+2022-01-04 * "Courses" "Auchan"
+    Expenses:Commun:Courses                      120.69 EUR
+    Assets:Bank:Commun:Bob                       -48.27 EUR  ; 120.69 * 0.4
+    Assets:Bank:Commun:Alice                     -72.42 EUR  ; 120.69 - 48.27
